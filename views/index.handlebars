@@ -1,53 +1,70 @@
 <div class="container">
 
   <div class="jumbotron text-danger bg-warning">
-    <h1 class="display-4 font-weight-bold text-center">Hawaiian Burger!</h1>
-  
-    
-
+    <h1 id="header" class="display-4 font-weight-bold text-center"><i class="fas fa-hamburger"></i> Hawaiian Burger</h1>
+    <hr class="my-4">
   </div>
-  <div class="card bg-light mb-3">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-6">
+
+  <div class="row">
+    <div class="col-md-12">
+    <div class="card bg-light mb-3">
+      <div class="card-header">
+        <h1 class="text-danger">Order a Burger!</h1>
+      </div>
+      <div class="card-body">
+        <form action="/burgers" method="POST">
+          <div class="form-group">
+            <input class="form-control" type="text" id="name" name="burger_name">
+          </div>
+          <button type="submit" class="btn btn-danger">Place Order</button>
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="card bg-light mb-3">
+        <div class="card-header">
           <h1 class="text-danger">Ready!</h1>
+        </div>
+        <div class="card-body">
 
           {{#each burgers}}
           {{#unless devoured}}
-
           <div>
             <form action="/burgers/{{id}}?_method=PUT" method="POST">
-              <h2 class="text-warning">{{burger_name}} <button type="submit" class="badge badge-secondary">Devour
-                  it!</button></h2>
+              <h2 class="text-warning">{{burger_name}} Burger <button type="submit" class="badge badge-danger">Devour
+                  it</button></h2>
             </form>
           </div>
           {{/unless}}
           {{/each}}
         </div>
+      </div>
+    </div>
 
-        <div class="col-md-6">
+    <div class="col-md-6">
+      <div class="card bg-light mb-3">
+        <div class="card-header">
           <h1 class="text-danger">Devoured!</h1>
+        </div>
+        <div class="card-body">
           {{#each burgers}}
           {{#if devoured}}
           <div>
             <h2 class="text-warning">
-              {{this.burger_name}}
+              {{this.burger_name}} Burger
             </h2>
           </div>
           {{/if}}
           {{/each}}
         </div>
       </div>
-      <form action="/burgers" method="POST">
-
-        <div class="form-group">
-          <h2 class="text-danger"> Order a Burger</h2>
-          <input class="form-control" type="text" id="name" name="burger_name">
-        </div>
-
-        <button type="submit" class="btn btn-danger">Place Order</button>
-      </form>
-
-
-
     </div>
+  </div>
+
+</div>
